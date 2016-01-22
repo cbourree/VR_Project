@@ -1,0 +1,4 @@
+CAN :
+http://fr.farnell.com/microchip/mcp3008-i-p/10bit-adc-2-7v-8ch-spi-16dip/dp/1627174
+MPU-6050 :
+https://www.cdiweb.com/datasheets/invensense/MPU-6050_DataSheet_V3%204.pdf
