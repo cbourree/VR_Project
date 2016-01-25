@@ -2,3 +2,6 @@ CAN :
 http://fr.farnell.com/microchip/mcp3008-i-p/10bit-adc-2-7v-8ch-spi-16dip/dp/1627174
 MPU-6050 :
 https://www.cdiweb.com/datasheets/invensense/MPU-6050_DataSheet_V3%204.pdf
+BT :
+http://tronixlabs.com/news/tutorial-using-hc06-bluetooth-to-serial-wireless-uart-adaptors-with-arduino/
+http://eskimon.fr/2498-arduino-annexes-g-utiliser-module-bluetooth-hc-05

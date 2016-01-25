@@ -1,3 +1,7 @@
+#include <SoftwareSerial.h>
+
+SoftwareSerial BTSerial(10, 11);
+
 // to the pins used:
 const int analogIn0 = A0, analogIn1 = A1, analogIn2 = A2, analogIn3 = A3, analogIn4 = A4;
 
@@ -6,6 +10,8 @@ int ValueA0 = 0, ValueA1 = 0, ValueA2 = 0, ValueA3 = 0, ValueA4 = 0;
 void setup() {
   // initialize serial communications at 9600 bps:
   Serial.begin(9600);
+  BTSerial.begin(9600);
+ 
 }
 
 void loop() {
