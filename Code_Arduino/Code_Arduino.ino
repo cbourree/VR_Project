@@ -43,13 +43,13 @@ void setup() {
   #endif
 
   // initialize device
-  Serial.println("Initializing I2C devices...");
+  Serial.write("Initializing I2C devices...");
   Wire.beginTransmission(0x69);
   accelgyro.initialize();
 
   // verify connection
-  Serial.println("Testing device connections...");
-  Serial.println(accelgyro.testConnection() ? "MPU6050 connection successful" : "MPU6050 connection failed");
+  Serial.write("Testing device connections...");
+  Serial.write(accelgyro.testConnection() ? "MPU6050 connection successful" : "MPU6050 connection failed");
  
 }
 
@@ -63,8 +63,8 @@ void loop() {
   {
     if(BTMessage != "")
     {//if data is available
-      Serial.print("Commande BT recue");
-      Serial.println(BTMessage); //show the data
+      Serial.write("Commande BT recue");
+      Serial.write(BTMessage); //show the data
       BTMessage = ""; //clear the data
     }
   }
@@ -77,28 +77,28 @@ void loop() {
   ValueA3 = CAN(adc_ch6);
   ValueA4 = CAN(adc_ch7);
 
-  Serial.print("A0 = ");
-  Serial.print(ValueA0);
-  Serial.print(" : A1 = ");
-  Serial.print(ValueA1);
-  Serial.print(" : A2 = ");
-  Serial.print(ValueA2);
-  Serial.print(" : A3 = ");
-  Serial.print(ValueA3);
-  Serial.print(" : A4 = ");
-  Serial.println(ValueA4);
+  Serial.write("A0 = ");
+  Serial.write(ValueA0);
+  Serial.write(" : A1 = ");
+  Serial.write(ValueA1);
+  Serial.write(" : A2 = ");
+  Serial.write(ValueA2);
+  Serial.write(" : A3 = ");
+  Serial.write(ValueA3);
+  Serial.write(" : A4 = ");
+  Serial.write(ValueA4);
   
   //##### TRAITEMENT GYRO ###
   accelgyro.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
 
   // display tab-separated accel/gyro x/y/z values
-  Serial.print("a/g:\t");
-  Serial.print(ax); Serial.print("\t");
-  Serial.print(ay); Serial.print("\t");
-  Serial.print(az); Serial.print("\t");
-  Serial.print(gx); Serial.print("\t");
-  Serial.print(gy); Serial.print("\t");
-  Serial.println(gz);
+  Serial.write("a/g:\t");
+  Serial.write(ax); Serial.write("\t");
+  Serial.write(ay); Serial.write("\t");
+  Serial.write(az); Serial.write("\t");
+  Serial.write(gx); Serial.write("\t");
+  Serial.write(gy); Serial.write("\t");
+  Serial.write(gz);
 
   delay(500);
 }
