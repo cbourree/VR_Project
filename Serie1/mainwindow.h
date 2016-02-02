@@ -23,6 +23,16 @@ private slots:
     void on_pushButtonTx_clicked();
     void readData();
 
+    void on_progressBar_1_valueChanged(int value);
+
+    void on_progressBar_2_valueChanged(int value);
+
+    void on_progressBar_3_valueChanged(int value);
+
+    void on_progressBar_4_valueChanged(int value);
+
+    void on_progressBar_5_valueChanged(int value);
+
 private:
     Ui::MainWindow *ui;
     QSerialPortInfo Info;

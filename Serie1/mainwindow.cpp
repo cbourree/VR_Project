@@ -14,11 +14,12 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    ui->vs_doigt1->setValue(60);
-    ui->vs_doigt2->setValue(60);
-    ui->vs_doigt3->setValue(60);
-    ui->vs_doigt4->setValue(60);
-    ui->vs_doigt5->setValue(60);
+
+    ui->progressBar_1->setValue(65);
+    ui->progressBar_2->setValue(65);
+    ui->progressBar_3->setValue(65);
+    ui->progressBar_4->setValue(65);
+    ui->progressBar_5->setValue(65);
 
 
    // connect(&ComPort, SIGNAL(readyRead()), this, SLOT(receptionCmd()));
@@ -52,6 +53,8 @@ void MainWindow::on_pushButtonOpenCom_clicked()
         //     ui->lineEditRx->setText(ui->lineEditRx->text() + Info.portName());
         }
     ui->labelQuelComPort->setText(Info.portName());
+    ui->pushButtonCloseCom->setEnabled(true);
+    ui->pushButtonOpenCom->setEnabled(false);
     ComPort.setPortName(Info.portName());
     if(ComPort.open(QIODevice::ReadWrite))
     {
@@ -71,6 +74,8 @@ void MainWindow::on_pushButtonCloseCom_clicked()
 {
     ComPort.close();
     ui->labelQuelComPort->setText("aucun");
+    ui->pushButtonOpenCom->setEnabled(true);
+    ui->pushButtonCloseCom->setEnabled(false);
 }
 
 void MainWindow::on_pushButtonTx_clicked()
@@ -86,4 +91,31 @@ void MainWindow::readData()
     Data = ComPort.readAll();
     ui->lineEditRx->clear();
     ui->lineEditRx->setText(ui->lineEditRx->text() + Data.data());
+}
+
+
+void MainWindow::on_progressBar_1_valueChanged(int value)
+{
+    ui->label_3->setText(QString::number(value) + "%");
+}
+
+void MainWindow::on_progressBar_2_valueChanged(int value)
+{
+    ui->label_4->setText(QString::number(value) + "%");
+}
+
+
+void MainWindow::on_progressBar_3_valueChanged(int value)
+{
+    ui->label_5->setText(QString::number(value) + "%");
+}
+
+void MainWindow::on_progressBar_4_valueChanged(int value)
+{
+    ui->label_6->setText(QString::number(value) + "%");
+}
+
+void MainWindow::on_progressBar_5_valueChanged(int value)
+{
+    ui->label_7->setText(QString::number(value) + "%");
 }

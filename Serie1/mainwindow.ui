@@ -7,11 +7,14 @@
     <x>0</x>
     <y>0</y>
     <width>502</width>
-    <height>251</height>
+    <height>243</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
+  </property>
+  <property name="animated">
+   <bool>true</bool>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QLabel" name="label">
@@ -54,6 +57,9 @@
     </property>
    </widget>
    <widget class="QPushButton" name="pushButtonCloseCom">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -85,14 +91,20 @@
       <height>20</height>
      </rect>
     </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
    </widget>
    <widget class="QLabel" name="labelQuelComPort">
     <property name="geometry">
      <rect>
-      <x>300</x>
-      <y>200</y>
-      <width>46</width>
-      <height>13</height>
+      <x>115</x>
+      <y>182</y>
+      <width>211</width>
+      <height>21</height>
      </rect>
     </property>
     <property name="text">
@@ -122,69 +134,177 @@
      </rect>
     </property>
    </widget>
-   <widget class="QSlider" name="vs_doigt1">
+   <widget class="QProgressBar" name="progressBar_1">
     <property name="geometry">
      <rect>
       <x>350</x>
-      <y>60</y>
-      <width>19</width>
-      <height>160</height>
+      <y>50</y>
+      <width>16</width>
+      <height>141</height>
      </rect>
+    </property>
+    <property name="value">
+     <number>24</number>
+    </property>
+    <property name="textVisible">
+     <bool>false</bool>
     </property>
     <property name="orientation">
      <enum>Qt::Vertical</enum>
     </property>
    </widget>
-   <widget class="QSlider" name="vs_doigt2">
+   <widget class="QProgressBar" name="progressBar_2">
     <property name="geometry">
      <rect>
       <x>380</x>
-      <y>60</y>
-      <width>19</width>
-      <height>160</height>
+      <y>50</y>
+      <width>16</width>
+      <height>141</height>
      </rect>
+    </property>
+    <property name="value">
+     <number>24</number>
+    </property>
+    <property name="textVisible">
+     <bool>false</bool>
     </property>
     <property name="orientation">
      <enum>Qt::Vertical</enum>
     </property>
    </widget>
-   <widget class="QSlider" name="vs_doigt3">
+   <widget class="QProgressBar" name="progressBar_3">
     <property name="geometry">
      <rect>
       <x>410</x>
-      <y>60</y>
-      <width>19</width>
-      <height>160</height>
+      <y>50</y>
+      <width>16</width>
+      <height>141</height>
      </rect>
+    </property>
+    <property name="value">
+     <number>24</number>
+    </property>
+    <property name="textVisible">
+     <bool>false</bool>
     </property>
     <property name="orientation">
      <enum>Qt::Vertical</enum>
     </property>
    </widget>
-   <widget class="QSlider" name="vs_doigt4">
+   <widget class="QProgressBar" name="progressBar_4">
     <property name="geometry">
      <rect>
       <x>440</x>
-      <y>60</y>
-      <width>19</width>
-      <height>160</height>
+      <y>50</y>
+      <width>16</width>
+      <height>141</height>
      </rect>
+    </property>
+    <property name="value">
+     <number>24</number>
+    </property>
+    <property name="textVisible">
+     <bool>false</bool>
     </property>
     <property name="orientation">
      <enum>Qt::Vertical</enum>
     </property>
    </widget>
-   <widget class="QSlider" name="vs_doigt5">
+   <widget class="QProgressBar" name="progressBar_5">
     <property name="geometry">
      <rect>
       <x>470</x>
-      <y>60</y>
-      <width>19</width>
-      <height>160</height>
+      <y>50</y>
+      <width>16</width>
+      <height>141</height>
      </rect>
+    </property>
+    <property name="value">
+     <number>24</number>
+    </property>
+    <property name="textVisible">
+     <bool>false</bool>
     </property>
     <property name="orientation">
      <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>200</y>
+      <width>31</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>200</y>
+      <width>31</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>200</y>
+      <width>31</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>200</y>
+      <width>31</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_7">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>200</y>
+      <width>31</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>20</y>
+      <width>71</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Clean</string>
     </property>
    </widget>
   </widget>
@@ -192,5 +312,22 @@
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>lineEditRx</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>431</x>
+     <y>26</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>395</x>
+     <y>28</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
