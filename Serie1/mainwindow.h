@@ -42,6 +42,13 @@ private:
     QByteArray Data;
 
     QString portChoisi;
+    QString cmdReception;
+
+    float doigt1;
+    float doigt2;
+    float doigt3;
+    float doigt4;
+    float doigt5;
 };
 
 #endif // MAINWINDOW_H

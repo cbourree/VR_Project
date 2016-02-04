@@ -90,9 +90,33 @@ void MainWindow::on_pushButtonTx_clicked()
 
 void MainWindow::readData()
 {
-    Data = ComPort.readAll();
-    //ui->lineEditRx->clear();
-    ui->lineEditRx->setText(ui->lineEditRx->text() + Data.data());
+    if(ComPort.bytesAvailable() > 20)
+    {
+        Data = ComPort.readAll();
+        cmdReception = ui->lineEditRx->text() + Data.data();
+        ui->lineEditRx->clear();
+        qDebug() << cmdReception;
+        //ui->lineEditRx->setText(cmdReception);
+        ui->lineEditRx->setText(ui->lineEditRx->text() + Data.data());
+
+        doigt1 = (QString(cmdReception[1]).toFloat()) + (QString(cmdReception[3]).toFloat()*0.1) + (QString(cmdReception[4]).toFloat()*0.01);
+        doigt1 = 100-((doigt1-2.21)*100)/1.64;
+
+        doigt2 = (QString(cmdReception[6]).toFloat()) + (QString(cmdReception[8]).toFloat()*0.1) + (QString(cmdReception[9]).toFloat()*0.01);
+        doigt2 = 100-((doigt2-2.21)*100)/1.64;
+
+        doigt3 = (QString(cmdReception[11]).toFloat()) + (QString(cmdReception[13]).toFloat()*0.1) + (QString(cmdReception[14]).toFloat()*0.01);
+        doigt3 = 100-((doigt3-2.21)*100)/1.64;
+
+        doigt4 = (QString(cmdReception[16]).toFloat()) + (QString(cmdReception[18]).toFloat()*0.1) + (QString(cmdReception[19]).toFloat()*0.01);
+        doigt4 = 100-((doigt4-2.21)*100)/1.64;
+
+        ui->lineEditTx->setText(QString::number(doigt1));
+        ui->progressBar_1->setValue(doigt1);
+        ui->progressBar_2->setValue(doigt2);
+        ui->progressBar_3->setValue(doigt3);
+        ui->progressBar_4->setValue(doigt4);
+    }
 }
 
 
