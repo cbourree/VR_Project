@@ -27,6 +27,7 @@ const byte adc_ch7 = 0x0F;     // ADC Channel 7
 String BTMessage;
 
 void setup() {
+  delay(7000);
   //##### INITIALISATION liaison série (BT)####
   Serial.begin(9600);
   

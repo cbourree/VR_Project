@@ -50,12 +50,14 @@ void MainWindow::on_pushButtonOpenCom_clicked()
              qDebug() << "Description  : " << info.description();
              qDebug() << "Manufacturier: " << info.manufacturer();
              Info =  info;
-        //     ui->lineEditRx->setText(ui->lineEditRx->text() + Info.portName());
+             //ui->lineEditRx->setText(ui->lineEditRx->text() + Info.portName());
         }
-    ui->labelQuelComPort->setText(Info.portName());
+    ui->labelQuelComPort->setText(portChoisi);
     ui->pushButtonCloseCom->setEnabled(true);
     ui->pushButtonOpenCom->setEnabled(false);
-    ComPort.setPortName(Info.portName());
+    qDebug() << "Port Sélectionné         : " << Info.portName();
+    ComPort.setPortName(portChoisi);
+
     if(ComPort.open(QIODevice::ReadWrite))
     {
         ComPort.flush();
@@ -89,7 +91,7 @@ void MainWindow::on_pushButtonTx_clicked()
 void MainWindow::readData()
 {
     Data = ComPort.readAll();
-    ui->lineEditRx->clear();
+    //ui->lineEditRx->clear();
     ui->lineEditRx->setText(ui->lineEditRx->text() + Data.data());
 }
 
@@ -118,4 +120,10 @@ void MainWindow::on_progressBar_4_valueChanged(int value)
 void MainWindow::on_progressBar_5_valueChanged(int value)
 {
     ui->label_7->setText(QString::number(value) + "%");
+}
+
+void MainWindow::on_cb_portSerie_currentTextChanged(const QString &arg1)
+{
+    QStringList port = arg1.split(" ");
+    portChoisi = port[0];
 }

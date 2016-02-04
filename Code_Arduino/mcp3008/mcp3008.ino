@@ -45,14 +45,36 @@ void loop()
   double vRef        = 5;
   int    adc_reading = 0;
 
-  adc_reading        = adc_single_channel_read (adc_single_ch7);
+  adc_reading        = adc_single_channel_read (adc_single_ch6);
 
   Serial.print       ("ADC Ch ");
-  Serial.print       (adc_single_ch7 & 0x07);
+  Serial.print       (adc_single_ch6 & 0x07);
   Serial.print       (" Voltage: ");
   Serial.println     ((adc_reading * vRef) / 1024) * 2;
+  
+  adc_reading        = adc_single_channel_read (adc_single_ch5);
 
-  delay(50);
+  Serial.print       ("ADC Ch ");
+  Serial.print       (adc_single_ch5 & 0x07);
+  Serial.print       (" Voltage: ");
+  Serial.println     ((adc_reading * vRef) / 1024) * 2;
+  
+  adc_reading        = adc_single_channel_read (adc_single_ch4);
+
+  Serial.print       ("ADC Ch ");
+  Serial.print       (adc_single_ch4 & 0x07);
+  Serial.print       (" Voltage: ");
+  Serial.println     ((adc_reading * vRef) / 1024) * 2;
+  
+  adc_reading        = adc_single_channel_read (adc_single_ch3);
+
+  Serial.print       ("ADC Ch ");
+  Serial.print       (adc_single_ch3 & 0x07);
+  Serial.print       (" Voltage: ");
+  Serial.println     ((adc_reading * vRef) / 1024) * 2;
+  
+
+  delay(1000);
   
 }
 

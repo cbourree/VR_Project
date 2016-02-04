@@ -70,6 +70,7 @@ int16_t gx, gy, gz;
 bool blinkState = false;
 
 void setup() {
+    delay(1000);
     // join I2C bus (I2Cdev library doesn't do this automatically)
     #if I2CDEV_IMPLEMENTATION == I2CDEV_ARDUINO_WIRE
         Wire.begin();

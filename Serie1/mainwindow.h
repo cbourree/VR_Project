@@ -33,11 +33,15 @@ private slots:
 
     void on_progressBar_5_valueChanged(int value);
 
+    void on_cb_portSerie_currentTextChanged(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
     QSerialPortInfo Info;
     QSerialPort ComPort;
     QByteArray Data;
+
+    QString portChoisi;
 };
 
 #endif // MAINWINDOW_H
