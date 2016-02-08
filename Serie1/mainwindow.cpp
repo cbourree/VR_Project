@@ -90,25 +90,25 @@ void MainWindow::on_pushButtonTx_clicked()
 
 void MainWindow::readData()
 {
-    if(ComPort.bytesAvailable() > 20)
+    if(ComPort.bytesAvailable() > 83)
     {
-        Data = ComPort.readAll();
+        Data = ComPort.readLine(85);
         cmdReception = ui->lineEditRx->text() + Data.data();
         ui->lineEditRx->clear();
         qDebug() << cmdReception;
         //ui->lineEditRx->setText(cmdReception);
-        ui->lineEditRx->setText(ui->lineEditRx->text() + Data.data());
+        ui->lineEditRx->setText(Data.data());
 
         doigt1 = (QString(cmdReception[1]).toFloat()) + (QString(cmdReception[3]).toFloat()*0.1) + (QString(cmdReception[4]).toFloat()*0.01);
         doigt1 = 100-((doigt1-2.21)*100)/1.64;
 
-        doigt2 = (QString(cmdReception[6]).toFloat()) + (QString(cmdReception[8]).toFloat()*0.1) + (QString(cmdReception[9]).toFloat()*0.01);
+        doigt2 = (QString(cmdReception[7]).toFloat()) + (QString(cmdReception[9]).toFloat()*0.1) + (QString(cmdReception[10]).toFloat()*0.01);
         doigt2 = 100-((doigt2-2.21)*100)/1.64;
 
-        doigt3 = (QString(cmdReception[11]).toFloat()) + (QString(cmdReception[13]).toFloat()*0.1) + (QString(cmdReception[14]).toFloat()*0.01);
+        doigt3 = (QString(cmdReception[13]).toFloat()) + (QString(cmdReception[15]).toFloat()*0.1) + (QString(cmdReception[16]).toFloat()*0.01);
         doigt3 = 100-((doigt3-2.21)*100)/1.64;
 
-        doigt4 = (QString(cmdReception[16]).toFloat()) + (QString(cmdReception[18]).toFloat()*0.1) + (QString(cmdReception[19]).toFloat()*0.01);
+        doigt4 = (QString(cmdReception[19]).toFloat()) + (QString(cmdReception[21]).toFloat()*0.1) + (QString(cmdReception[22]).toFloat()*0.01);
         doigt4 = 100-((doigt4-2.21)*100)/1.64;
 
         ui->lineEditTx->setText(QString::number(doigt1));
