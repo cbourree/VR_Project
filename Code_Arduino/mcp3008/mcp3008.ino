@@ -18,7 +18,6 @@ void setup()
   pinMode       (CS_MCP3008, OUTPUT);
   digitalWrite  (CS_MCP3008, LOW);        // Cycle the ADC CS pin as per datasheet
   digitalWrite  (CS_MCP3008, HIGH);
-
 }
 
 
@@ -49,7 +48,7 @@ void loop()
   Serial.write       ("D");
   Serial.print     ((adc_reading * vRef) / 1024) * 2;
   Serial.write       ("E");
-
+  Serial.println("\t");
   delay(100);
   
 }
@@ -64,7 +63,8 @@ int adc_single_channel_read(byte readAddress)
   
   SPI.beginTransaction (MCP3008);
   digitalWrite         (CS_MCP3008, LOW);
-  SPI.transfer         (0x01);                                 // Start Bit
+  SPI.transfer         (0x01);
+  Serial.print(readAddress);// Start Bit
   dataMSB =            SPI.transfer(readAddress << 4) & 0x03;  // Send readAddress and receive MSB data, masked to two bits
   dataLSB =            SPI.transfer(JUNK);                     // Push junk data and get LSB byte return
   digitalWrite         (CS_MCP3008, HIGH);
