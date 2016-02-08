@@ -1,0 +1,45 @@
+LABCENTER PROTEUS TOOL INFORMATION FILE
+=======================================
+
+In case of difficulty, please e-mail support@labcenter.co.uk
+
+Tool set up for Proteus layout 'schema.pdsprj'.
+CADCAM generated at 09:49:44 on vendredi 5 février 2016.
+
+File List
+---------
+Top Copper              : schema_v4 - CADCAM Top Copper.TXT
+Bottom Copper           : schema_v4 - CADCAM Bottom Copper.TXT
+Bottom Solder Resist    : schema_v4 - CADCAM Bottom Solder Resist.TXT
+Drill                   : schema_v4 - CADCAM Drill.TXT
+
+Photoplotter Setup
+------------------
+Format: RS274X, ASCII, 2.4, imperial, absolute, eob=*, LZO
+Notes:  D=Diameter, S=Side, W=Width, H=Height, C=Chamfer
+
+D10	CIRCLE  D=20th                                                            DRAW
+D11	CIRCLE  D=25th                                                            DRAW
+D12	CIRCLE  D=70th                                                            FLASH
+D13	CIRCLE  D=60th                                                            FLASH
+D14	DIL     W=100th               H=50th                C=10th                FLASH
+D15	CIRCLE  D=80th                                                            FLASH
+D16	CIRCLE  D=90th                                                            FLASH
+D17	CIRCLE  D=10th                                                            DRAW
+D18	CIRCLE  D=8th                                                             DRAW
+D19	DIL     W=110th               H=60th                C=10th                FLASH
+D70	CIRCLE  D=100th                                                           FLASH
+D71	CIRCLE  D=110th                                                           FLASH
+
+NC Drill Setup
+--------------
+Format: ASCII, 2.4, imperial, absolute, eob=<CR><LF>, no zero suppression.
+Notes:  Tool sizes are diameters. Layer sets are in brackets - 0=TOP, 15=BOTTOM, 1-14=INNER.
+
+T01	20th (0-15)
+T02	40th (0-15)
+T03	30th (0-15)
+T04	50th (0-15)
+
+
+[END OF FILE]
