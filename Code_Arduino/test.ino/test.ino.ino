@@ -39,7 +39,7 @@ void setup() {
     Wire.beginTransmission(0x69);
     accelgyro.initialize();
 
-    Serial.println(accelgyro.testConnection() ? "MPU6050 connection successful" : "MPU6050 connection failed");
+    //Serial.println(accelgyro.testConnection() ? "MPU6050 connection successful" : "MPU6050 connection failed");
 
 }
 
@@ -50,31 +50,31 @@ void loop() {
   Serial.write       ("A");
   Serial.print     ((adc_reading * 5.0) / 1024) * 2;
   adc_reading        = adc_single_channel_read (adc_single_ch5);
-  Serial.write       ("B");
+  Serial.write       (";B");
   Serial.print     ((adc_reading * 5.0) / 1024) * 2;
   
   adc_reading        = adc_single_channel_read (adc_single_ch4);
 
-  Serial.write       ("C");
+  Serial.write       (";C");
   Serial.print     ((adc_reading * 5.0) / 1024) * 2;
   
   adc_reading        = adc_single_channel_read (adc_single_ch3);
 
-  Serial.write       ("D");
+  Serial.write       (";D");
   Serial.print     ((adc_reading * 5.0) / 1024) * 2;
 
   // read raw accel/gyro measurements from device
     accelgyro.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
-    Serial.write("AX");
-    printDouble(ax, 10000);Serial.write("AY:");
-    printDouble(ay, 10000);Serial.write("AZ:");
-    printDouble(az, 10000);Serial.write("GX:");
-    printDouble(gx, 10000);Serial.write("GY:");
-    printDouble(gy, 10000);Serial.write("GZ:");
-    printDouble(gz, 10000);Serial.println("F");
+    Serial.write(";AX");
+    printDouble(ax);Serial.write(";AY:");
+    printDouble(ay);Serial.write(";AZ:");
+    printDouble(az);Serial.write(";GX:");
+    printDouble(gx);Serial.write(";GY:");
+    printDouble(gy);Serial.write(";GZ:");
+    printDouble(gz);Serial.write("F\n");
 
     // blink LED to indicate activity
-    delay(500);
+    delay(40);
 }
 
 int adc_single_channel_read(byte readAddress)
@@ -95,24 +95,23 @@ int adc_single_channel_read(byte readAddress)
 
 }
 
-void printDouble( double val, unsigned int precision){
-// prints val with number of decimal places determine by precision
-// NOTE: precision is 1 followed by the number of zeros for the desired number of decimial places
-// example: printDouble( 3.1415, 100); // prints 3.14 (two decimal places)
-
-   Serial.print (int(val));  //prints the int part
-   Serial.print("."); // print the decimal point
-   unsigned int frac;
-   if(val >= 0)
-       frac = (val - int(val)) * precision;
-   else
-       frac = (int(val)- val ) * precision;
-
-   if (frac < 100 && int(val) < 10) {
-      Serial.print("0");
+void printDouble(double val){
+   if (long(val) < 0) {
+     Serial.print("-");
+     val = -val;
+    }
+    else {
+      Serial.print("+");
+    }
+    
+   if (long(val) < 10) {
+     Serial.print("0000");
+   } else if (long(val) < 100) {
+     Serial.print("000");
+   } else if (long(val) < 1000) {
+     Serial.print("00");
+   } else if (long(val) < 10000) {
+     Serial.print("0");
    }
-   if (frac < 10 && int(val) < 100) {
-      Serial.print("0");
-   }
-   Serial.print(frac,DEC) ;
+   Serial.print(long(val));  //prints the int part
 } 

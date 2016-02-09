@@ -49,6 +49,10 @@ private:
     float doigt3;
     float doigt4;
     float doigt5;
+
+    float AX, AY, AZ, GX, GY, GZ;
+
+
 };
 
 #endif // MAINWINDOW_H
