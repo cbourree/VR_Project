@@ -93,10 +93,9 @@ void MainWindow::readData()
     if(ComPort.bytesAvailable() > 83)
     {
         Data = ComPort.readLine(85);
-        cmdReception = ui->lineEditRx->text() + Data.data();
+        cmdReception = Data.data();
         ui->lineEditRx->clear();
         qDebug() << cmdReception;
-        //ui->lineEditRx->setText(cmdReception);
         ui->lineEditRx->setText(Data.data());
 
         doigt1 = (QString(cmdReception[1]).toFloat()) + (QString(cmdReception[3]).toFloat()*0.1) + (QString(cmdReception[4]).toFloat()*0.01);
@@ -111,11 +110,37 @@ void MainWindow::readData()
         doigt4 = (QString(cmdReception[19]).toFloat()) + (QString(cmdReception[21]).toFloat()*0.1) + (QString(cmdReception[22]).toFloat()*0.01);
         doigt4 = 100-((doigt4-2.21)*100)/1.64;
 
-        ui->lineEditTx->setText(QString::number(doigt1));
+
+        AX = (QString(cmdReception[27]).toInt() * 10000) + (QString(cmdReception[28]).toInt()*1000) + (QString(cmdReception[29]).toInt()*100) + (QString(cmdReception[30]).toInt()*10) + (QString(cmdReception[31]).toInt());
+        AX = (QString(cmdReception[26]) == "-") ? -AX : AX;
+
+        AY = (QString(cmdReception[37]).toInt() * 10000) + (QString(cmdReception[38]).toInt()*1000) + (QString(cmdReception[39]).toInt()*100) + (QString(cmdReception[40]).toInt()*10) + (QString(cmdReception[41]).toInt());
+        AY = (QString(cmdReception[36]) == "-") ? -AY : AY;
+
+        AZ = (QString(cmdReception[47]).toInt() * 10000) + (QString(cmdReception[48]).toInt()*1000) + (QString(cmdReception[49]).toInt()*100) + (QString(cmdReception[50]).toInt()*10) + (QString(cmdReception[51]).toInt());
+        AZ = (QString(cmdReception[46]) == "-") ? -AZ : AZ;
+
+        GX = (QString(cmdReception[57]).toInt() * 10000) + (QString(cmdReception[58]).toInt()*1000) + (QString(cmdReception[59]).toInt()*100) + (QString(cmdReception[60]).toInt()*10) + (QString(cmdReception[61]).toInt());
+        GX = (QString(cmdReception[56]) == "-") ? -GX : GX;
+
+        GY = (QString(cmdReception[67]).toInt() * 10000) + (QString(cmdReception[68]).toInt()*1000) + (QString(cmdReception[69]).toInt()*100) + (QString(cmdReception[70]).toInt()*10) + (QString(cmdReception[71]).toInt());
+        GY = (QString(cmdReception[66]) == "-") ? -GY : GY;
+
+        GZ = (QString(cmdReception[77]).toInt() * 10000) + (QString(cmdReception[78]).toInt()*1000) + (QString(cmdReception[79]).toInt()*100) + (QString(cmdReception[80]).toInt()*10) + (QString(cmdReception[81]).toInt());
+        GZ = (QString(cmdReception[76]) == "-") ? -GZ : GZ;
+
+        ui->lineEditTx->setText(QString(cmdReception[26]));
         ui->progressBar_1->setValue(doigt1);
         ui->progressBar_2->setValue(doigt2);
         ui->progressBar_3->setValue(doigt3);
         ui->progressBar_4->setValue(doigt4);
+
+        ui->progressBar_6->setValue(AX);
+        ui->progressBar_7->setValue(AY);
+        ui->progressBar_8->setValue(AZ);
+        ui->progressBar_9->setValue(GX);
+        ui->progressBar_10->setValue(GY);
+        ui->progressBar_11->setValue(GZ);
     }
 }
 
