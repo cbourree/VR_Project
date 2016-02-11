@@ -18,6 +18,8 @@ const byte adc_single_ch7 = 0x0F;     // ADC Channel 7
 
 int16_t G_doigts[18];
 
+String msg = "";
+
 void setup() {
     for (int i = 0 ; i < 18 ; i++) {
       G_doigts[i] = 0;
@@ -39,38 +41,40 @@ void setup() {
 
 void loop() {
   int    adc_reading = 0;
-
+  
   adc_reading = adc_single_channel_read (adc_single_ch6);
-  Serial.write       ("A");
-  Serial.print     ((adc_reading * 5.0) / 1024) * 2;
-  adc_reading        = adc_single_channel_read (adc_single_ch5);
-  Serial.write       (";B");
-  Serial.print     ((adc_reading * 5.0) / 1024) * 2;
+  msg += "A";
   
-  adc_reading        = adc_single_channel_read (adc_single_ch4);
-
-  Serial.write       (";C");
-  Serial.print     ((adc_reading * 5.0) / 1024) * 2;
+  msg += ((adc_reading * 5.0) / 1024);
   
-  adc_reading        = adc_single_channel_read (adc_single_ch3);
+  adc_reading = adc_single_channel_read (adc_single_ch5);
+  msg += ";B";
+  msg += ((adc_reading * 5.0) / 1024);
+  
+  adc_reading = adc_single_channel_read (adc_single_ch4);
 
-  Serial.write       (";D");
-  Serial.print     ((adc_reading * 5.0) / 1024) * 2;
+  msg += ";C";
+  msg += ((adc_reading * 5.0) / 1024);
+  
+  adc_reading = adc_single_channel_read (adc_single_ch3);
+
+  msg += ";D";
+  msg += ((adc_reading * 5.0) / 1024);
 
     for (int i = 0 ; i < 3 ; i++) {
       accelgyro.getMotion6(&(G_doigts[i * 6]), &(G_doigts[(i * 6) + 1]), &(G_doigts[(i * 6) + 2]), &(G_doigts[(i * 6) + 3]), &(G_doigts[(i * 6) + 4]), &(G_doigts[(i * 6) + 5]));
       delay(10);
     }
     
-    Serial.write(";AX");
-    printDouble((G_doigts[0] + G_doigts[6] + G_doigts[12]) / 3);Serial.write(";AY:");
-    printDouble((G_doigts[1] + G_doigts[7] + G_doigts[13]) / 3);Serial.write(";AZ:");
-    printDouble((G_doigts[2] + G_doigts[8] + G_doigts[14]) / 3);Serial.write(";GX:");
-    printDouble((G_doigts[3] + G_doigts[9] + G_doigts[15]) / 3);Serial.write(";GY:");
-    printDouble((G_doigts[4] + G_doigts[10] + G_doigts[16]) / 3);Serial.write(";GZ:");
-    printDouble((G_doigts[5] + G_doigts[11] + G_doigts[17]) / 3);Serial.write("F\n");
+    msg += ";AX";
+    printDouble((G_doigts[0] + G_doigts[6] + G_doigts[12]) / 3);msg += ";AY:";
+    printDouble((G_doigts[1] + G_doigts[7] + G_doigts[13]) / 3);msg += ";AZ:";
+    printDouble((G_doigts[2] + G_doigts[8] + G_doigts[14]) / 3);msg += ";GX:";
+    printDouble((G_doigts[3] + G_doigts[9] + G_doigts[15]) / 3);msg += ";GY:";
+    printDouble((G_doigts[4] + G_doigts[10] + G_doigts[16]) / 3);msg += ";GZ:";
+    printDouble((G_doigts[5] + G_doigts[11] + G_doigts[17]) / 3);msg += "F\n";
 
-    // blink LED to indicate activity
+    Serial.print(msg);
     delay(20);
 }
 
@@ -94,21 +98,21 @@ int adc_single_channel_read(byte readAddress)
 
 void printDouble(double val){
    if (long(val) < 0) {
-     Serial.print("-");
+     msg += "-";
      val = -val;
     }
     else {
-      Serial.print("+");
+      msg += "+";
     }
     
    if (long(val) < 10) {
-     Serial.print("0000");
+     msg += "0000";
    } else if (long(val) < 100) {
-     Serial.print("000");
+     msg += "000";
    } else if (long(val) < 1000) {
-     Serial.print("00");
+     msg += "00";
    } else if (long(val) < 10000) {
-     Serial.print("0");
+     msg += "0";
    }
-   Serial.print(long(val));  //prints the int part
+   msg += String(long(val));  //prints the int part
 } 
