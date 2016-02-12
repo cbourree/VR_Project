@@ -1,3 +1,5 @@
+#include <I2Cdev.h>
+
 #include "MPU6050.h"
 #include <SPI.h>                         // Include the SPI library
 #include "Wire.h"
@@ -74,7 +76,7 @@ void loop() {
     printDouble((G_doigts[4] + G_doigts[10] + G_doigts[16]) / 3);msg += ";GZ:";
     printDouble((G_doigts[5] + G_doigts[11] + G_doigts[17]) / 3);msg += "F\n";
 
-    Serial.print(msg);
+    Serial.println(msg);
     delay(20);
 }
 
