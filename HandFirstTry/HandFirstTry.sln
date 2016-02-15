@@ -5,6 +5,8 @@ Project("{CA5DC412-D809-7C76-00D6-12591CBB420F}") = "HandFirstTry", "Assembly-CS
 EndProject
 Project("{CA5DC412-D809-7C76-00D6-12591CBB420F}") = "HandFirstTry", "Assembly-CSharp-Editor.csproj", "{51FC8EDA-2A2E-389F-E43E-E382329A8A00}"
 EndProject
+Project("{CA5DC412-D809-7C76-00D6-12591CBB420F}") = "HandFirstTry", "Assembly-UnityScript.unityproj", "{178A7B04-5CF0-9EA9-7753-D1E0865F6561}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{51FC8EDA-2A2E-389F-E43E-E382329A8A00}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51FC8EDA-2A2E-389F-E43E-E382329A8A00}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51FC8EDA-2A2E-389F-E43E-E382329A8A00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{178A7B04-5CF0-9EA9-7753-D1E0865F6561}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{178A7B04-5CF0-9EA9-7753-D1E0865F6561}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{178A7B04-5CF0-9EA9-7753-D1E0865F6561}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{178A7B04-5CF0-9EA9-7753-D1E0865F6561}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

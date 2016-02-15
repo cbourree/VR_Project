@@ -1,4 +1,6 @@
-#include "I2Cdev.h"
+
+#include <I2Cdev.h>
+
 #include "MPU6050.h"
 #include <SPI.h>                         // Include the SPI library
 #if I2CDEV_IMPLEMENTATION == I2CDEV_ARDUINO_WIRE
@@ -67,6 +69,7 @@ void loop() {
   // read raw accel/gyro measurements from device
     accelgyro.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
     msg += ";AX";
+<<<<<<< HEAD
     printDouble(ax);msg += ";AY:";
     printDouble(ay);msg += ";AZ:";
     printDouble(az);msg += ";GX:";
@@ -77,6 +80,17 @@ void loop() {
     // blink LED to indicate activity
     Serial.println(msg);
     delay(40);
+=======
+    printDouble((G_doigts[0] + G_doigts[6] + G_doigts[12]) / 3);msg += ";AY:";
+    printDouble((G_doigts[1] + G_doigts[7] + G_doigts[13]) / 3);msg += ";AZ:";
+    printDouble((G_doigts[2] + G_doigts[8] + G_doigts[14]) / 3);msg += ";GX:";
+    printDouble((G_doigts[3] + G_doigts[9] + G_doigts[15]) / 3);msg += ";GY:";
+    printDouble((G_doigts[4] + G_doigts[10] + G_doigts[16]) / 3);msg += ";GZ:";
+    printDouble((G_doigts[5] + G_doigts[11] + G_doigts[17]) / 3);msg += "F\n";
+
+    Serial.println(msg);
+    delay(20);
+>>>>>>> 0e074f8a5e823008eb6104e7e34f2ad6800bb7fc
 }
 
 int adc_single_channel_read(byte readAddress)
