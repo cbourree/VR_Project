@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Arms\fingerMoving.cs" />
+     <Compile Include="Assets\Mouvements.cs" />
      <Compile Include="Assets\Wispy Sky\Standard Assets\Characters\FirstPersonCharacter\Scripts\FirstPersonController.cs" />
      <Compile Include="Assets\Wispy Sky\Standard Assets\Characters\FirstPersonCharacter\Scripts\HeadBob.cs" />
      <Compile Include="Assets\Wispy Sky\Standard Assets\Characters\FirstPersonCharacter\Scripts\MouseLook.cs" />
