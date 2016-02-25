@@ -8,7 +8,7 @@ public class Mouvements : MonoBehaviour
 
     public string PortToUse = "COM4";
 
-    SerialPort sp = new SerialPort("COM4", 9600);
+    SerialPort sp = new SerialPort("COM7", 9600);
     public string data;
 
     public float doigt1;
