@@ -25,7 +25,7 @@ String msg = "";
 
 void setup() {
     delay(2000);
-    Serial.begin(9600);
+    Serial.begin(115200);
     SPI.begin();
     
     pinMode       (CS_MCP3008, OUTPUT);

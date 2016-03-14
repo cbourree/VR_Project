@@ -8,7 +8,7 @@ public class Mouvements : MonoBehaviour
 
     public string PortToUse = "COM4";
 
-    SerialPort sp = new SerialPort("COM7", 9600);
+    SerialPort sp = new SerialPort("COM7", 115200);
     public string data;
 
     public float doigt1;
@@ -77,6 +77,7 @@ public class Mouvements : MonoBehaviour
             try
             {
 				data = sp.ReadLine();
+				
 
 				doigt1 = (data[1] - '0') + ((data[3] - '0') * 0.1f) + ((data[4] - '0') * 0.01f);
 				doigt2 = (data[7] - '0') + ((data[9] - '0') * 0.1f) + ((data[10] - '0') * 0.01f);
@@ -107,9 +108,9 @@ public class Mouvements : MonoBehaviour
 
 				GZ = ((data[77] - '0') * 10000) + ((data[78] - '0') * 1000) + ((data[79] - '0') * 100) + ((data[80] - '0') * 10) + ((data[81] - '0'));
 				GZ = ((data[76]) == '-') ? -GZ : GZ;
-				MoveObject(AX - OffsetAX - 70, AY - OffsetAY - 30, GZ, Cube);
-				//MoveCamera(GZ - OffsetGZ, Camera);
-				//MoveBras(GX - OffsetGX, Bras);
+				MoveObject(AX - OffsetAX - 70, AY - OffsetAY - 30, GZ - OffsetGZ, Cube);
+				MoveCamera(GZ - OffsetGZ, Camera);
+				MoveBras(GX - OffsetGX, GY - OffsetGY, Bras);
 
 				MoveD(doigt4, D11, D12, D13);
 				MoveD(doigt3, D21, D22, D23);
@@ -143,9 +144,17 @@ public class Mouvements : MonoBehaviour
 		CameraToMove.transform.Rotate(new Vector3(0, -(valueY / 1000f), 0)) ; 
 	}
 
-	void MoveBras(float valueX, GameObject BrasToMove) {
+	void MoveBras(float valueX, float valueY, GameObject BrasToMove) {
 		//Debug.Log("GX : " + (GX / 1000f) +  "GY : " + (GY / 1000f) + "GZ : " + (GZ / 1000f));
-		BrasToMove.transform.Rotate(new Vector3(valueX / 3000f, 0, 0)) ; 
+		//BrasToMove.transform.Rotate(new Vector3(valueX / 3000f, 0, 0)) ;
+		//if (BrasToMove.transform.localPosition.y + (valueY / 8000f) > 0.08f) {
+			//BrasToMove.transform.localPosition = new Vector3(0, -0.08f, 0);
+		//} else if (BrasToMove.transform.localPosition.y - (valueY / 8000f) < -0.38f) {
+			//BrasToMove.transform.localPosition = new Vector3(0, -0.38f, 0);
+		//} else {
+			//BrasToMove.transform.localPosition += new Vector3(0, 0, valueY / 8000f);
+		//}
+
 	}
 
 	void InitialisationGyro()

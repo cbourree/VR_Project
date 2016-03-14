@@ -61,7 +61,7 @@ void MainWindow::on_pushButtonOpenCom_clicked()
     if(ComPort.open(QIODevice::ReadWrite))
     {
         ComPort.flush();
-        ComPort.setBaudRate(QSerialPort::Baud9600, QSerialPort::AllDirections);
+        ComPort.setBaudRate(QSerialPort::Baud4800, QSerialPort::AllDirections);
         ComPort.setDataBits(QSerialPort::Data8);
         ComPort.setParity(QSerialPort::NoParity);
         ComPort.setFlowControl(QSerialPort::NoFlowControl);
