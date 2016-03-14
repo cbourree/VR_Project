@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>791</width>
-    <height>306</height>
+    <height>551</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -87,7 +87,7 @@
      <rect>
       <x>40</x>
       <y>20</y>
-      <width>601</width>
+      <width>741</width>
       <height>20</height>
      </rect>
     </property>
@@ -599,6 +599,138 @@
       <width>64</width>
       <height>23</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QProgressBar" name="pb_filter3">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>300</y>
+      <width>16</width>
+      <height>181</height>
+     </rect>
+    </property>
+    <property name="minimum">
+     <number>-16000</number>
+    </property>
+    <property name="maximum">
+     <number>16000</number>
+    </property>
+    <property name="value">
+     <number>24</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="QProgressBar" name="pb_filter4">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>300</y>
+      <width>16</width>
+      <height>181</height>
+     </rect>
+    </property>
+    <property name="minimum">
+     <number>-16000</number>
+    </property>
+    <property name="maximum">
+     <number>16000</number>
+    </property>
+    <property name="value">
+     <number>24</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="QProgressBar" name="pb_filter5">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>300</y>
+      <width>16</width>
+      <height>181</height>
+     </rect>
+    </property>
+    <property name="minimum">
+     <number>-16000</number>
+    </property>
+    <property name="maximum">
+     <number>16000</number>
+    </property>
+    <property name="value">
+     <number>24</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="QProgressBar" name="pb_filter6">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>300</y>
+      <width>16</width>
+      <height>181</height>
+     </rect>
+    </property>
+    <property name="minimum">
+     <number>-16000</number>
+    </property>
+    <property name="maximum">
+     <number>16000</number>
+    </property>
+    <property name="value">
+     <number>24</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="QProgressBar" name="pb_filter7">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>300</y>
+      <width>16</width>
+      <height>181</height>
+     </rect>
+    </property>
+    <property name="minimum">
+     <number>-16000</number>
+    </property>
+    <property name="maximum">
+     <number>16000</number>
+    </property>
+    <property name="value">
+     <number>24</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="QProgressBar" name="pb_filter8">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>300</y>
+      <width>16</width>
+      <height>181</height>
+     </rect>
+    </property>
+    <property name="minimum">
+     <number>-16000</number>
+    </property>
+    <property name="maximum">
+     <number>16000</number>
+    </property>
+    <property name="value">
+     <number>24</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
     </property>
    </widget>
   </widget>

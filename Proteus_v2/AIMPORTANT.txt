@@ -1,0 +1,5 @@
+http://www.digikey.ca/product-detail/en/texas-instruments/ADC124S021CIMM%2FNOPB/ADC124S021CIMM%2FNOPBTR-ND/755013
+
+https://learn.adafruit.com/adafruit-lsm9ds0-accelerometer-gyro-magnetometer-9-dof-breakouts/overview
+
+http://www.digikey.com/product-detail/en/NCP1117DT33G/NCP1117DT33GOS-ND/1483318

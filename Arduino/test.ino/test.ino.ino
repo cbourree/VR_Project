@@ -70,7 +70,7 @@ void loop() {
     accelgyro.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
     msg += ";AX";
 
-    printDouble(ax);msg += ";AY:";
+    printDouble(ax);msg += ";AY:"; 
     printDouble(ay);msg += ";AZ:";
     printDouble(az);msg += ";GX:";
     printDouble(gx);msg += ";GY:";
@@ -102,22 +102,24 @@ int adc_single_channel_read(byte readAddress)
 }
 
 void printDouble(double val){
+  String data;
+  
    if (long(val) < 0) {
-     msg += "-";
+     data += "-";
      val = -val;
     }
     else {
-      msg += "+";
+      data += "+";
     }
     
    if (long(val) < 10) {
-     msg += "0000";
+     data += "0000";
    } else if (long(val) < 100) {
-     msg += "000";
+     data += "000";
    } else if (long(val) < 1000) {
-     msg += "00";
+     data += "00";
    } else if (long(val) < 10000) {
-     msg += "0";
+     data += "0";
    }
-   msg += String(long(val));  //prints the int part
+   data += String(long(val));  //prints the int part
 } 

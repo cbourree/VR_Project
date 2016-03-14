@@ -28,80 +28,12 @@ String BTMessage;
 
 void setup() {
   delay(7000);
-  //##### INITIALISATION liaison série (BT)####
-  Serial.begin(9600);
-  
-  //##### INITIALISATION ADC MCP3008 ####
-  pinMode(CS_MCP3008, OUTPUT);
-  digitalWrite(CS_MCP3008, LOW);        // Cycle the ADC CS pin as per datasheet
-  digitalWrite(CS_MCP3008, HIGH);
-  
-  //##### INITIALISATION GYRO ####
-  #if I2CDEV_IMPLEMENTATION == I2CDEV_ARDUINO_WIRE
-     Wire.begin();
-  #elif I2CDEV_IMPLEMENTATION == I2CDEV_BUILTIN_FASTWIRE
-     Fastwire::setup(400, true);
-  #endif
 
-  // initialize device
-  Serial.write("Initializing I2C devices...");
-  Wire.beginTransmission(0x69);
-  accelgyro.initialize();
-
-  // verify connection
-  Serial.write("Testing device connections...");
-  Serial.write(accelgyro.testConnection() ? "MPU6050 connection successful" : "MPU6050 connection failed");
- 
 }
 
 void loop() {
   //##### TRAITEMENT CMD BT ####
-  while(Serial.available())
-  {//while there is data available on the serial monitor
-    BTMessage += char(Serial.read());//store string from serial command
-  }
-  if(!Serial.available())
-  {
-    if(BTMessage != "")
-    {//if data is available
-      Serial.write("Commande BT recue");
-      Serial.write(BTMessage); //show the data
-      BTMessage = ""; //clear the data
-    }
-  }
-  
-  //##### TRAITEMENT DES DOIGTS ####
-  // read the analog in value:
-  ValueA0 = CAN(adc_ch3);
-  ValueA1 = CAN(adc_ch4);
-  ValueA2 = CAN(adc_ch5);
-  ValueA3 = CAN(adc_ch6);
-  ValueA4 = CAN(adc_ch7);
 
-  Serial.write("A0 = ");
-  Serial.write(ValueA0);
-  Serial.write(" : A1 = ");
-  Serial.write(ValueA1);
-  Serial.write(" : A2 = ");
-  Serial.write(ValueA2);
-  Serial.write(" : A3 = ");
-  Serial.write(ValueA3);
-  Serial.write(" : A4 = ");
-  Serial.write(ValueA4);
-  
-  //##### TRAITEMENT GYRO ###
-  accelgyro.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
-
-  // display tab-separated accel/gyro x/y/z values
-  Serial.write("a/g:\t");
-  Serial.write(ax); Serial.write("\t");
-  Serial.write(ay); Serial.write("\t");
-  Serial.write(az); Serial.write("\t");
-  Serial.write(gx); Serial.write("\t");
-  Serial.write(gy); Serial.write("\t");
-  Serial.write(gz);
-
-  delay(500);
 }
 
 //Return ADC ch tension
