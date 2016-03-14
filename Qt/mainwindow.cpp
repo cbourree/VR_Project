@@ -90,9 +90,9 @@ void MainWindow::on_pushButtonTx_clicked()
 
 void MainWindow::readData()
 {
-    if(ComPort.bytesAvailable() > 83)
+    if(ComPort.bytesAvailable() > 47)
     {
-        Data = ComPort.readLine(85);
+        /*Data = ComPort.readLine(85);
         cmdReception = Data.data();
         ui->lineEditRx->clear();
         qDebug() << cmdReception;
@@ -140,7 +140,71 @@ void MainWindow::readData()
         ui->progressBar_8->setValue(AZ);
         ui->progressBar_9->setValue(GX);
         ui->progressBar_10->setValue(GY);
-        ui->progressBar_11->setValue(GZ);
+        ui->progressBar_11->setValue(GZ);*/
+
+
+
+        Data = ComPort.readLine(60);
+        if(Data.length() >= 20)
+        {
+        cmdReception = Data.data();
+        ui->lineEditRx->clear();
+        qDebug() << cmdReception;
+        ui->lineEditRx->setText(Data.data());
+
+        /*doigt1 = (QString(cmdReception[1]).toFloat()) + (QString(cmdReception[3]).toFloat()*0.1) + (QString(cmdReception[4]).toFloat()*0.01);
+        doigt1 = 100-((doigt1-2.21)*100)/1.64;
+
+        doigt2 = (QString(cmdReception[7]).toFloat()) + (QString(cmdReception[9]).toFloat()*0.1) + (QString(cmdReception[10]).toFloat()*0.01);
+        doigt2 = 100-((doigt2-2.21)*100)/1.64;
+
+        doigt3 = (QString(cmdReception[13]).toFloat()) + (QString(cmdReception[15]).toFloat()*0.1) + (QString(cmdReception[16]).toFloat()*0.01);
+        doigt3 = 100-((doigt3-2.21)*100)/1.64;
+
+        doigt4 = (QString(cmdReception[19]).toFloat()) + (QString(cmdReception[21]).toFloat()*0.1) + (QString(cmdReception[22]).toFloat()*0.01);
+        doigt4 = 100-((doigt4-2.21)*100)/1.64;*/
+
+
+
+
+        //AX+01588AY-04760AZ+14832GX-00296GY-00141GZ-00603
+
+
+        AX = (QString(cmdReception[3]).toInt() * 10000) + (QString(cmdReception[4]).toInt()*1000) + (QString(cmdReception[5]).toInt()*100) + (QString(cmdReception[6]).toInt()*10) + (QString(cmdReception[7]).toInt());
+        AX = (QString(cmdReception[2]) == "-") ? -AX : AX;
+
+        AY = (QString(cmdReception[11]).toInt() * 10000) + (QString(cmdReception[12]).toInt()*1000) + (QString(cmdReception[13]).toInt()*100) + (QString(cmdReception[14]).toInt()*10) + (QString(cmdReception[15]).toInt());
+        AY = (QString(cmdReception[10]) == "-") ? -AY : AY;
+
+        AZ = (QString(cmdReception[19]).toInt() * 10000) + (QString(cmdReception[20]).toInt()*1000) + (QString(cmdReception[21]).toInt()*100) + (QString(cmdReception[22]).toInt()*10) + (QString(cmdReception[23]).toInt());
+        AZ = (QString(cmdReception[18]) == "-") ? -AZ : AZ;
+
+        GX = (QString(cmdReception[27]).toInt() * 10000) + (QString(cmdReception[28]).toInt()*1000) + (QString(cmdReception[29]).toInt()*100) + (QString(cmdReception[30]).toInt()*10) + (QString(cmdReception[31]).toInt());
+        GX = (QString(cmdReception[26]) == "-") ? -GX : GX;
+
+        GY = (QString(cmdReception[35]).toInt() * 10000) + (QString(cmdReception[36]).toInt()*1000) + (QString(cmdReception[37]).toInt()*100) + (QString(cmdReception[38]).toInt()*10) + (QString(cmdReception[39]).toInt());
+        GY = (QString(cmdReception[34]) == "-") ? -GY : GY;
+
+        GZ = (QString(cmdReception[43]).toInt() * 10000) + (QString(cmdReception[44]).toInt()*1000) + (QString(cmdReception[45]).toInt()*100) + (QString(cmdReception[46]).toInt()*10) + (QString(cmdReception[47]).toInt());
+        GZ = (QString(cmdReception[42]) == "-") ? -GZ : GZ;
+
+
+        ui->lineEditTx->setText(QString(cmdReception[48]));
+        //ui->pb_filter1->setValue(doigt1);
+        //ui->pb_filter2->setValue(doigt2);
+        //ui->pb_filter1->setValue(doigt3);
+        //ui->pb_filter2->setValue(doigt4);
+
+        ui->pb_filter3->setValue(AX);
+        ui->pb_filter4->setValue(AY);
+        ui->pb_filter5->setValue(AZ);
+        ui->pb_filter6->setValue(GX);
+        ui->pb_filter7->setValue(GY);
+        ui->pb_filter8->setValue(GZ);
+
+
+        }
+
     }
 }
 

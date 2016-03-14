@@ -3,9 +3,10 @@ using System.Collections;
 using System.IO.Ports;
 
 
+
 public class Mouvements : MonoBehaviour
 {
-
+	int cnt = 0;
     public string PortToUse = "COM4";
 
     SerialPort sp = new SerialPort("COM4", 9600);
@@ -72,14 +73,15 @@ public class Mouvements : MonoBehaviour
 
         if (sp.IsOpen)
         {
-			
 
             try
             {
 				data = sp.ReadLine();
-				
+				if(data.Length >= 47)
+				{
+					Debug.Log ("read data:" + data);
 
-				doigt1 = (data[1] - '0') + ((data[3] - '0') * 0.1f) + ((data[4] - '0') * 0.01f);
+					/*doigt1 = (data[1] - '0') + ((data[3] - '0') * 0.1f) + ((data[4] - '0') * 0.01f);
 				doigt2 = (data[7] - '0') + ((data[9] - '0') * 0.1f) + ((data[10] - '0') * 0.01f);
 				doigt3 = (data[13] - '0') + ((data[15] - '0')*0.1f) + ((data[16] - '0') * 0.01f);
 				doigt4 = (data[19] - '0') + ((data[21] - '0')*0.1f) + ((data[22] - '0') * 0.01f);
@@ -93,7 +95,7 @@ public class Mouvements : MonoBehaviour
 				AY = (((AY + 16000) * 360) / 32000);
 
 				AZ = ((data[47] - '0')*10000) + ((data[48] - '0') * 1000) + ((data[49] - '0') * 100) + ((data[50] - '0') * 10) + ((data[51] - '0'));
-				AZ = ((data[46]) == '-') ? -AZ : AZ;
+				AZ = ((data[46]) == '-') ? -AZ : AZ;s
 				AZ = (((AZ + 16000) * 180) / 32000);
 				//Debug.Log ("Offset AX : " + OffsetAX + " AY : " + OffsetAY + " AZ : " + OffsetAZ);
 				//Debug.Log ("Result AX : " + (AX - OffsetAX) + " AY : " + (AZ - OffsetAZ) + " AZ : " + (AZ - OffsetAZ));
@@ -107,19 +109,51 @@ public class Mouvements : MonoBehaviour
 				GY = ((data[66]) == '-') ? GY : -GY;
 
 				GZ = ((data[77] - '0') * 10000) + ((data[78] - '0') * 1000) + ((data[79] - '0') * 100) + ((data[80] - '0') * 10) + ((data[81] - '0'));
-				GZ = ((data[76]) == '-') ? -GZ : GZ;
-				MoveObject(AX - OffsetAX - 70, AY - OffsetAY - 30, GZ - OffsetGZ, Cube);
-				MoveCamera(GZ - OffsetGZ, Camera);
-				MoveBras(GX - OffsetGX, GY - OffsetGY, Bras);
+				GZ = ((data[76]) == '-') ? -GZ : GZ;*/
 
-				MoveD(doigt4, D11, D12, D13);
-				MoveD(doigt3, D21, D22, D23);
-				MoveD(doigt2, D31, D32, D33);
-				MoveD(doigt1, D41, D42, D43);
+					AX = ((data[3] - '0')*10000) + ((data[4] - '0') * 1000) + ((data[5] - '0') * 100) + ((data[6] - '0') * 10) + ((data[7] - '0'));
+					AX = ((data[2]) == '-') ? -AX : AX;
+					AX = (((AX + 16000) * 360) / 32000); 
+					AY = ((data[11] - '0')*10000) + ((data[12] - '0') * 1000) + ((data[13] - '0') * 100) + ((data[14] - '0') * 10) + ((data[15] - '0'));
+					AY = ((data[10]) == '-') ? -AY : AY;
+					AY = (((AY + 16000) * 360) / 32000);
+					AZ = ((data[19] - '0')*10000) + ((data[20] - '0') * 1000) + ((data[21] - '0') * 100) + ((data[22] - '0') * 10) + ((data[23] - '0'));
+					AZ = ((data[18]) == '-') ? -AZ : AZ;
+					AZ = (((AZ + 16000) * 180) / 32000);
+					//Debug.Log ("Offset AX : " + OffsetAX + " AY : " + OffsetAY + " AZ : " + OffsetAZ);
+					//Debug.Log ("Result AX : " + (AX - OffsetAX) + " AY : " + (AZ - OffsetAZ) + " AZ : " + (AZ - OffsetAZ));
+
+					//Debug.Log(Parent.transform.eulerAngles);
+
+					GX = ((data[27] - '0') * 10000) + ((data[28] - '0') * 1000) + ((data[29] - '0') * 100) + ((data[30] - '0') * 10) + ((data[31] - '0'));
+					GX = ((data[26]) == '-') ? -GX : GX;
+					GY = ((data[35] - '0') * 10000) + ((data[36] - '0') * 1000) + ((data[37] - '0') * 100) + ((data[38] - '0') * 10) + ((data[39] - '0'));
+					GY = ((data[34]) == '-') ? GY : -GY;
+					GZ = ((data[43] - '0') * 10000) + ((data[44] - '0') * 1000) + ((data[45] - '0') * 100) + ((data[46] - '0') * 10) + ((data[47] - '0'));
+					GZ = ((data[42]) == '-') ? -GZ : GZ;
+					Debug.Log ("move: AX=" + AX + " GZ=" +GZ+ " " +" cube:" + Cube);
+					//MoveObject(AX - OffsetAX - 70, AY - OffsetAY - 30, GZ - OffsetGZ, Cube);
+
+					MoveObject(AX + 260, AY, 0, Cube);
+
+
+
+					//MoveCamera(GZ - OffsetGZ, Camera);
+					//MoveBras(GX - OffsetGX, GY - OffsetGY, Bras);
+					//MoveD(doigt4, D11, D12, D13);
+					//MoveD(doigt3, D21, D22, D23);
+					//MoveD(doigt2, D31, D32, D33);
+					//MoveD(doigt1, D41, D42, D43);
+
+
+				}
+				
             }
             catch (System.Exception)
             {
-				Debug.Log ("Impossible de lire la liaison série");
+				Debug.Log ("exception :"+cnt);
+				//Debug.Log ("(Recep.)Impossible de lire la liaison série");
+				//Debug.Log (System.Exception);
             }
         }
     }
@@ -134,9 +168,11 @@ public class Mouvements : MonoBehaviour
 
 	void MoveObject(float valueX, float valueY, float valueZ, GameObject ObjectToMove)
     {
-		ObjectToMove.transform.localEulerAngles = new Vector3 ((valueX * 0.6f) - 90, valueY * 0.6f, ObjectToMove.transform.localEulerAngles.z - 180);
-		ObjectToMove.transform.Rotate(new Vector3 (0, 0, -valueZ / 1000f));
-		//ObjectToMove.transform.localEulerAngles = new Vector3 (0, 0, valueZ * 0.1f + 90);
+		//ObjectToMove.transform.localEulerAngles = new Vector3 ((valueX * 0.6f) - 90, valueY * 0.6f, ObjectToMove.transform.localEulerAngles.z - 180);
+		ObjectToMove.transform.localEulerAngles = new Vector3 ((valueX * 0.5f) - 50, (valueY * 0.5f) - 440, 0);
+
+		//ObjectToMove.transform.Rotate(new Vector3 (0, 0, -valueZ / 1000f));
+		       //ObjectToMove.transform.localEulerAngles = new Vector3 (0, 0, valueZ * 0.1f + 90);
     }
 
 	void MoveCamera(float valueY, GameObject CameraToMove) {
@@ -163,7 +199,8 @@ public class Mouvements : MonoBehaviour
 		{
 			
 			data = sp.ReadLine();
-			AX = ((data[27] - '0')*10000) + ((data[28] - '0') * 1000) + ((data[29] - '0') * 100) + ((data[30] - '0') * 10) + ((data[31] - '0'));
+
+			/*AX = ((data[27] - '0')*10000) + ((data[28] - '0') * 1000) + ((data[29] - '0') * 100) + ((data[30] - '0') * 10) + ((data[31] - '0'));
 			AX = ((data[26]) == '-') ? -AX : AX;
 			OffsetAX = (((AX + 16000) * 360) / 32000) + 90;
 
@@ -184,13 +221,43 @@ public class Mouvements : MonoBehaviour
 			OffsetGY = (data[66] == '-') ? GY : -GY;
 
 			GZ = ((data[77] - '0')*10000) + ((data[78] - '0') * 1000) + ((data[79] - '0') * 100) + ((data[80] - '0') * 10) + ((data[81] - '0'));
-			OffsetGZ = (data[76] == '-') ? -GZ : GZ;
+			OffsetGZ = (data[76] == '-') ? -GZ : GZ;*/
+
+
+			AX = ((data[3] - '0')*10000) + ((data[4] - '0') * 1000) + ((data[5] - '0') * 100) + ((data[6] - '0') * 10) + ((data[7] - '0'));
+			AX = ((data[2]) == '-') ? -AX : AX;
+			OffsetAX = (((AX + 16000) * 360) / 32000) + 90;
+
+			AY = ((data[11] - '0')*10000) + ((data[12] - '0') * 1000) + ((data[13] - '0') * 100) + ((data[14] - '0') * 10) + ((data[15] - '0'));
+			AY = ((data[10]) == '-') ? -AY : AY;
+			OffsetAY = (((AX + 16000) * 360) / 32000);
+
+			AZ = ((data[19] - '0')*10000) + ((data[20] - '0') * 1000) + ((data[21] - '0') * 100) + ((data[22] - '0') * 10) + ((data[23] - '0'));
+			AZ = ((data[18]) == '-') ? -AZ : AZ;
+			OffsetAZ = (((AX + 16000) * 360) / 32000);
+			//Debug.Log ("Offset AX : " + OffsetAX + " AY : " + OffsetAY + " AZ : " + OffsetAZ);
+			//Debug.Log ("Result AX : " + (AX - OffsetAX) + " AY : " + (AZ - OffsetAZ) + " AZ : " + (AZ - OffsetAZ));
+
+			//Debug.Log(Parent.transform.eulerAngles);
+
+			GX = ((data[27] - '0') * 10000) + ((data[28] - '0') * 1000) + ((data[29] - '0') * 100) + ((data[30] - '0') * 10) + ((data[31] - '0'));
+			OffsetGX = ((data[26]) == '-') ? -GX : GX;
+
+			GY = ((data[35] - '0') * 10000) + ((data[36] - '0') * 1000) + ((data[37] - '0') * 100) + ((data[38] - '0') * 10) + ((data[39] - '0'));
+			OffsetGY = ((data[34]) == '-') ? GY : -GY;
+
+			GZ = ((data[43] - '0') * 10000) + ((data[44] - '0') * 1000) + ((data[45] - '0') * 100) + ((data[46] - '0') * 10) + ((data[47] - '0'));
+			OffsetGZ = ((data[42]) == '-') ? -GZ : GZ;
+
+
+
+
 
 			Debug.Log ("Initialisation... Offset AX : " + OffsetAX + " AY : " + OffsetAY + " AZ : " + OffsetAZ);
 		}
 		catch (System.Exception)
 		{
-			Debug.Log ("Impossible de lire la liaison série");
+			Debug.Log ("(Init.)Impossible de lire la liaison série");
 		}
 	}
 
